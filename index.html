@@ -5,18 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Tarjeta de presentación digital — Víctor Manuel Vásquez Castillejos, Secretario de Interculturalidad, Pueblos y Comunidades Indígenas y Afromexicanas, Gobierno del Estado de Oaxaca." />
   <meta name="theme-color" content="#9D2449" />
-
-  <!-- Open Graph (vista previa al compartir) -->
   <meta property="og:title" content="Víctor Manuel Vásquez Castillejos" />
   <meta property="og:description" content="Secretario de Interculturalidad · Gobierno del Estado de Oaxaca" />
   <meta property="og:type" content="profile" />
-
   <title>Víctor Manuel Vásquez Castillejos · SIPCIA Oaxaca</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,10 +42,7 @@
       }
     }
 
-    html, body {
-      min-height: 100%;
-      background: var(--color-background-tertiary);
-    }
+    html, body { min-height: 100%; background: var(--color-background-tertiary); }
 
     .card-wrap {
       display: flex;
@@ -71,10 +63,10 @@
       height: fit-content;
     }
 
+    /* ── Header ── */
     .header-band {
       background: #9D2449;
       border-radius: var(--border-radius-lg);
-      padding: 1.25rem 1.25rem 1rem;
       margin-bottom: 1.5rem;
       position: relative;
       overflow: hidden;
@@ -82,7 +74,7 @@
     .header-band::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background: repeating-linear-gradient(
         45deg,
         rgba(255,255,255,0.03) 0px,
@@ -90,6 +82,44 @@
         transparent 2px,
         transparent 12px
       );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: stretch;
+      min-height: 120px;
+    }
+
+    .header-text {
+      flex: 1;
+      min-width: 0;
+      padding: 1.25rem 1rem 1rem 1.25rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-photo-wrap {
+      width: 115px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    /* degradado suave para fusionar la foto con el fondo guinda */
+    .header-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #9D2449 0%, transparent 35%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .header-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .dep-label {
@@ -99,26 +129,24 @@
       color: #ffffff;
       text-transform: uppercase;
       margin: 0 0 0.5rem;
-      font-family: 'DM Sans', sans-serif;
     }
     .name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       color: #ffffff;
       margin: 0 0 0.35rem;
       line-height: 1.25;
-      position: relative;
     }
     .title {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 300;
-      color: #ffffff;
+      color: rgba(255,255,255,0.85);
       line-height: 1.5;
       margin: 0;
-      position: relative;
     }
 
+    /* ── Resto de la tarjeta ── */
     .divider {
       height: 0.5px;
       background: var(--color-border-tertiary);
@@ -178,11 +206,9 @@
       margin: 0 0 0.75rem;
     }
 
-    .social-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-    }
+    .social-grid   { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .social-grid-2 { display: grid; grid-template-columns: 1fr 1fr;     gap: 8px; }
+
     .social-btn {
       display: flex;
       flex-direction: column;
@@ -204,7 +230,6 @@
       font-size: 11px;
       font-weight: 400;
       color: var(--color-text-secondary);
-      font-family: 'DM Sans', sans-serif;
     }
 
     .maps-btn {
@@ -219,7 +244,6 @@
       margin-top: 1rem;
       width: 100%;
       justify-content: center;
-      font-family: 'DM Sans', sans-serif;
       transition: background 0.15s;
     }
     .maps-btn:hover { background: #7a1c38; }
@@ -230,7 +254,6 @@
       font-size: 11px;
       color: var(--color-text-tertiary);
       margin-top: 1.25rem;
-      font-family: 'DM Sans', sans-serif;
     }
   </style>
 </head>
@@ -240,9 +263,16 @@
   <div class="card">
 
     <div class="header-band">
-      <p class="dep-label">Gobierno del Estado de Oaxaca</p>
-      <p class="name">Víctor Manuel Vásquez Castillejos</p>
-      <p class="title">Secretario de Interculturalidad, Pueblos y Comunidades Indígenas y Afromexicanas</p>
+      <div class="header-content">
+        <div class="header-text">
+          <p class="dep-label">Gobierno del Estado de Oaxaca</p>
+          <p class="name">Víctor Manuel Vásquez Castillejos</p>
+          <p class="title">Secretario de Interculturalidad, Pueblos y Comunidades Indígenas y Afromexicanas</p>
+        </div>
+        <div class="header-photo-wrap">
+          <img src="VictorCata.jpeg" alt="Víctor Manuel Vásquez Castillejos" class="header-photo" />
+        </div>
+      </div>
     </div>
 
     <a href="tel:9515015000" class="info-row">
@@ -279,13 +309,13 @@
       </div>
       <div>
         <p class="info-label">Ubicación</p>
-        <p class="info-value">Edificio 3, Carr. Internacional Oaxaca-Istmo, Tlalixtac de Cabrera</p>
+        <p class="info-value">Edificio 3, planta baja, Carr. Internacional Oaxaca-Istmo, Tlalixtac de Cabrera</p>
       </div>
     </a>
 
     <div class="divider"></div>
 
-    <p class="section-label">Redes sociales</p>
+    <p class="section-label">Redes de la Secretaría</p>
     <div class="social-grid">
       <a href="https://www.facebook.com/INTERCULTURALIDADGobOax/" target="_blank" rel="noopener" class="social-btn">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2">
@@ -302,7 +332,7 @@
       <a href="https://www.instagram.com/interculturalidad_goboax" target="_blank" rel="noopener" class="social-btn">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <defs>
-            <linearGradient id="ig" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient id="ig1" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#f09433"/>
               <stop offset="25%" stop-color="#e6683c"/>
               <stop offset="50%" stop-color="#dc2743"/>
@@ -310,7 +340,36 @@
               <stop stop-color="#bc1888"/>
             </linearGradient>
           </defs>
-          <rect width="24" height="24" rx="5.5" fill="url(#ig)"/>
+          <rect width="24" height="24" rx="5.5" fill="url(#ig1)"/>
+          <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+        </svg>
+        <span class="social-name">Instagram</span>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="section-label">Redes del Secretario</p>
+    <div class="social-grid-2">
+      <a href="https://www.facebook.com/VictorCataGobOax" target="_blank" rel="noopener" class="social-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2">
+          <path d="M24 12.073C24 5.404 18.627 0 12 0S0 5.404 0 12.073c0 6.027 4.388 11.02 10.125 11.927v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.696 4.533-4.696 1.313 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.612 23.093 24 18.1 24 12.073z"/>
+        </svg>
+        <span class="social-name">Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/_victorcata?igsh=MWZucGMxaXhjdDIybw==" target="_blank" rel="noopener" class="social-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="ig2" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f09433"/>
+              <stop offset="25%" stop-color="#e6683c"/>
+              <stop offset="50%" stop-color="#dc2743"/>
+              <stop offset="75%" stop-color="#cc2366"/>
+              <stop stop-color="#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect width="24" height="24" rx="5.5" fill="url(#ig2)"/>
           <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/>
           <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
         </svg>
